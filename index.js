@@ -1,14 +1,25 @@
 const express = require('express');
-
-// create an instance of express
+const ejsLayout = require('express-ejs-layouts');
 const app = express();
 
-// HOME route
-// GET REQUEST => the client has sent a (R)ead request for files or data
-// req = request object, res = response object
+app.set('view engine', 'ejs');
+app.use(express.static('static'));
+app.use(express.urlencoded({ extended: false }));
+app.use(ejsLayout);
+
+app.use('/users', require('./controller/usersController'));
+
 app.get('/', (req, res) => {
 	// send 'Hello, world' back to the client that made the request
-	res.send('Hello, World!');
+	res.render('home.ejs');
+});
+
+app.get('/newsfeed', (req, res) => {
+	res.render('newsfeed.ejs');
+});
+
+app.get('/profile', (req, res) => {
+	res.render('profile.ejs');
 });
 
 // assign a port for our server to listen for incoming requests
