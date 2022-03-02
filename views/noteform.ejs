@@ -1,16 +1,23 @@
 <div class="body-wrapper">
   <h1>Note Form</h1> 
-  <form action="/" method="POST">
+  <form action="/users/noteform" method="POST">
     <div>
-    <label for="text">Subject</label>
-    <br>
-    <input type="text" name="email" id="email">
+      <label for="subject">Subject:</label>
+      <br>
+      <input type="text" name="subject" id="subject">
     </div>
     <div>
-    <label for="text">Text:</label>
-    <br>
-    <textarea name="" id="" cols="30" rows="10"></textarea>
-    <br>
-    <button type="submit">Submit</button>
+      <label for="link">Link:</label>
+      <br>
+      <input type="url" name="link" id="link">
+      </div>
+    <div>
+      <label for="textarea">Text:</label>
+      <br>
+      <textarea name="textarea" id="" cols="30" rows="10"></textarea>
+      <br>
+      <input type="hidden" name="userId" value=<%= user.id %> >
+      <button type="submit">Submit</button>
+     </div> 
   </form>
 </div>

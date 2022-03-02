@@ -20,6 +20,25 @@ body {
   align-items: center;
 }
 
+.top-header-wrap {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* .profile-left-side {
+  display: flex;
+  flex-direction: column;
+} */
+
+.profile-right-side {
+  align-self: flex-end;
+}
+
+.profile-username {
+  padding-top: 30px;
+  align-self: flex-end;
+}
+
 .left-side:not(:last-child) {
   margin-right: 20px;
 }
@@ -33,6 +52,11 @@ a {
 }
 
 h1 {
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+}
+
+h3 {
   margin-block-start: 0em;
   margin-block-end: 0em;
 }

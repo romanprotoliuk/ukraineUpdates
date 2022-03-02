@@ -54,12 +54,32 @@ router.get('/newsfeed', (req, res) => {
 	res.render('newsfeed.ejs');
 });
 
-router.get('/profile', async (req, res) => {
-	res.render('profile.ejs', {});
+router.get('/profilejournal', async (req, res) => {
+	res.render('profileJournal.ejs', {});
+});
+
+router.get('/profiletweets', async (req, res) => {
+	res.render('profileTweets.ejs', {});
 });
 
 router.get('/noteform', (req, res) => {
 	res.render('noteform.ejs');
+});
+
+router.post('/noteform', async (req, res) => {
+	try {
+		await db.note.create({
+			subject: req.body.subject,
+			url: req.body.link,
+			description: req.body.textarea,
+			userId: req.body.userId
+		});
+		console.log(req.body);
+
+		res.redirect('/users/newsfeed');
+	} catch (err) {
+		console.log(err);
+	}
 });
 
 router.get('/logout', (req, res) => {

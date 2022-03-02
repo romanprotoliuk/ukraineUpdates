@@ -1,0 +1,18 @@
+<div class="body-wrapper">
+  <div class="top-header-wrap">
+    <div class="profile-left-side">
+      <h1>Profile</h1>
+      <div class="profile-username">
+        <h3>hi, <%= user.firstName %> </h3>
+      </div>
+    </div>
+  
+    <div class="profile-right-side">
+      <a class="right-side" href="/users/profilejournal">War crime reports</a>
+      <a class="right-side" href="/users/profiletweets">Tweets</a>
+    </div>
+  </div>
+
+  <br>
+  <%- include('../views/partials/tweets.ejs')%> 
+</div>
