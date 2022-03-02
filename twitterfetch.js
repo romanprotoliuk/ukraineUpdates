@@ -24,3 +24,11 @@ const getTweets = async () => {
 	}
 };
 getTweets();
+
+// <% array.forEach(element => { %>
+// 	<form action="/" method="post">
+// 		<input name="title" value="<%= results.Title %> " type="text" />
+// 		<input name="imdbId" value="<%= results.imdbID %> " type="text" />
+// 		<input type="submit" value="Add" />
+// </form>
+// <% }); %>

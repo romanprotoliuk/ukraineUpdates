@@ -1,0 +1,4 @@
+sequelize model:create --name user --attributes firstName:VARCHAR(255),lastName:VARCHAR(255),userName:VARCHAR(255),email:VARCHAR(255),password:VARCHAR(255)
+sequelize model:create --name tweet --attributes tweetId:string,text:text,source:string,url:text
+sequelize model:create --name note --attributes subject:string,description:text,url:text
+sequelize model:create --name user_tweet --attributes userId:integer,tweetId:integer
