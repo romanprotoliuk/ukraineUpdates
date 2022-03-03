@@ -4,10 +4,12 @@ const app = express();
 const cookieParser = require('cookie-parser');
 const db = require('./models');
 const cryptojs = require('crypto-js');
+const methodOverride = require('method-override');
 require('dotenv').config();
 
 app.set('view engine', 'ejs');
 app.use(express.static('static'));
+app.use(methodOverride('_method'));
 app.use(express.urlencoded({ extended: false }));
 app.use(ejsLayout);
 app.use(cookieParser());

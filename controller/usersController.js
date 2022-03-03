@@ -54,11 +54,50 @@ router.get('/newsfeed', (req, res) => {
 	res.render('newsfeed.ejs');
 });
 
-router.get('/profilejournal', async (req, res) => {
-	res.render('profileJournal.ejs', {});
+router.get('/edit/:noteId', async (req, res) => {
+	// select current user logged in id and then grab notId by req.params.id
+	const note = await db.note.findOne({
+		where: {
+			id: req.params.noteId
+		}
+	});
+	// console.log(note.id);
+	res.render('edit.ejs', { note: note });
 });
 
-router.get('/profiletweets', async (req, res) => {
+/////// new code
+router.put('/edit/:noteId', async (req, res) => {
+	await db.note.update(
+		{
+			subject: req.body.subject,
+			description: req.body.textarea,
+			url: req.body.link
+		},
+		{
+			where: {
+				id: req.body.noteId
+			}
+		}
+	);
+	res.redirect('/users/newsfeed');
+	// res.redirect('/users/profile/:id');
+});
+
+router.get('/profilejournal/:id', async (req, res) => {
+	try {
+		const allData = await db.note.findAll({
+			where: {
+				userId: req.params.id
+			}
+		});
+		console.log(allData);
+		res.render('profileJournal.ejs', { reports: allData });
+	} catch (err) {
+		console.log(err);
+	}
+});
+
+router.get('/profiletweets/:id', async (req, res) => {
 	res.render('profileTweets.ejs', {});
 });
 

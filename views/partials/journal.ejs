@@ -1,1 +1,21 @@
 <h2>Your war crime reports</h2>
+<ul>
+  <% reports.forEach((report, i) => { %>
+    <li>
+      <h4 class="war-subject"><%= report.subject %></h4>
+      <p class="paragraph"><%= report.description %>  </p>
+      <br>
+      <div class="war-links">
+        <a href="<%= report.url %>" target="_blank"><%= report.url %> </a>
+      </div>
+      <div class="form-buttons">
+        <form action="/users/edit/<%=report.id %> " method="get">
+          <button class="edit-btn" type="submit">Edit</button>
+        </form>
+        <form action="/" method="post">
+          <button type="submit">Delete</button>
+        </form>
+    </div>
+    </li>
+  <%  }) %> 
+</ul>
