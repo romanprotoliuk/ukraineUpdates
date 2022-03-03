@@ -12,7 +12,7 @@
         <form action="/users/edit/<%=report.id %> " method="get">
           <button class="edit-btn" type="submit">Edit</button>
         </form>
-        <form action="/" method="post">
+        <form action="/users/<%= report.id %>?_method=DELETE" method="post">
           <button type="submit">Delete</button>
         </form>
     </div>

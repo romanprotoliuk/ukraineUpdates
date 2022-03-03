@@ -83,6 +83,19 @@ router.put('/edit/:noteId', async (req, res) => {
 	// res.redirect('/users/profile/:id');
 });
 
+router.delete('/:noteId', async (req, res) => {
+	try {
+		await db.note.destroy({
+			where: {
+				id: req.params.noteId
+			}
+		});
+	} catch (err) {
+		console.log(err);
+	}
+	res.redirect('/users/newsfeed');
+});
+
 router.get('/profilejournal/:id', async (req, res) => {
 	try {
 		const allData = await db.note.findAll({
@@ -90,7 +103,7 @@ router.get('/profilejournal/:id', async (req, res) => {
 				userId: req.params.id
 			}
 		});
-		console.log(allData);
+		// console.log(allData);
 		res.render('profileJournal.ejs', { reports: allData });
 	} catch (err) {
 		console.log(err);
