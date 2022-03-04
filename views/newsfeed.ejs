@@ -14,11 +14,14 @@
   <ul>
     <% dataAll.forEach((x, i) => { %>
       <li>
-        <h6 class="war-subject"><%= x.text %></h6>
-        <p class="paragraph"><%= x.d %>  </p>
+        <h4 class="war-subject"><%= x.text %></h4>
+        <p class="paragraph">tweet id: <%= x.id %>  </p>
+        <p class="paragraph">author id: <%= x.author_id %>  </p>
         <br>
         <div class="form-buttons">
           <form action="" method="get">
+            <input hidden name="title" value="<%= x.text %> " type="text" />
+            <input hidden name="imdbId" value="<%= x.id %> " type="text" />
             <button class="edit-btn" type="submit">add tweet</button>
           </form>
       </div>

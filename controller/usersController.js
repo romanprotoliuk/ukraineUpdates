@@ -55,6 +55,7 @@ router.get('/newsfeed', async (req, res) => {
 	const bearerToken = process.env.BEARER_TOKEN;
 
 	const accounts = [ `nexta_tv`, `ukraine` ];
+	console.log(accounts);
 	const options = {
 		headers: {
 			Authorization: `Bearer ${bearerToken}`
@@ -63,8 +64,13 @@ router.get('/newsfeed', async (req, res) => {
 
 	try {
 		const pedingPromises = accounts.map((account) =>
-			axios.get(`https://api.twitter.com/2/tweets/search/recent?query=from:${account}`, options)
+			// 'https://api.twitter.com/2/tweets/search/stream?tweet.fields=public_metrics&expansions=author_id';
+			axios.get(
+				`https://api.twitter.com/2/tweets/search/recent?query=from:${account}&tweet.fields=created_at&expansions=author_id&user.fields=created_at`,
+				options
+			)
 		);
+		console.log(req.query);
 		const responses = await Promise.all(pedingPromises);
 		const tweets = [];
 		responses.forEach((response, i) => {
@@ -75,6 +81,28 @@ router.get('/newsfeed', async (req, res) => {
 		});
 
 		console.log(tweets);
+		// tweets.map(async (author) => {
+		// 	const namesAccount = axios.get(`https://api.twitter.com/2/users/${author.author_id}`, options);
+		// 	const responsesUserNames = await Promise.all(namesAccount);
+		// 	console.log(responsesUserNames);
+		// 	// return responsesUserNames;
+		// });
+
+		// 1891490382
+
+		// const printAuthor = async () => {
+		// 	const namesAccount = await axios.get(`https://api.twitter.com/labs/2/users/1891490382`, options);
+		// 	console.log(namesAccount);
+		// };
+
+		// console.log(tweets);
+		// printAuthor();
+
+		// tweets.forEach(async (author) => {
+		// 	authors.push(author.author_id);
+		// 	const userName = await axios.get(`https://api.twitter.com/labs/2/users/${author.author_id}`, options);
+		// });
+
 		res.render('newsfeed.ejs', { dataAll: tweets });
 	} catch (err) {
 		console.log(err);
