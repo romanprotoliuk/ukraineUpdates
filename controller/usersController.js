@@ -64,7 +64,7 @@ router.get('/newsfeed', async (req, res) => {
 
 	//api.twitter.com/2/tweets/search/recent?query=from:TwitterDev&tweet.fields=created_at&expansions=author_id&user.fields=created_at
 
-	https: try {
+	try {
 		const pedingPromises = accounts.map((account) =>
 			// 'https://api.twitter.com/2/tweets/search/stream?tweet.fields=public_metrics&expansions=author_id';
 			axios.get(
@@ -83,28 +83,6 @@ router.get('/newsfeed', async (req, res) => {
 		});
 
 		console.log(tweets);
-		// tweets.map(async (author) => {
-		// 	const namesAccount = axios.get(`https://api.twitter.com/2/users/${author.author_id}`, options);
-		// 	const responsesUserNames = await Promise.all(namesAccount);
-		// 	console.log(responsesUserNames);
-		// 	// return responsesUserNames;
-		// });
-
-		// 1891490382
-
-		// const printAuthor = async () => {
-		// 	const namesAccount = await axios.get(`https://api.twitter.com/labs/2/users/1891490382`, options);
-		// 	console.log(namesAccount);
-		// };
-
-		// console.log(tweets);
-		// printAuthor();
-
-		// tweets.forEach(async (author) => {
-		// 	authors.push(author.author_id);
-		// 	const userName = await axios.get(`https://api.twitter.com/labs/2/users/${author.author_id}`, options);
-		// });
-
 		res.render('newsfeed.ejs', { dataAll: tweets });
 	} catch (err) {
 		console.log(err);
