@@ -18,6 +18,7 @@ const getTweets = async () => {
 		const responses = await Promise.all(pedingPromises);
 		for (let i = 0; i < responses.length; i++) {
 			console.log(responses[i].data);
+			return responses[i].data;
 		}
 	} catch (err) {
 		console.log(err);
@@ -25,6 +26,7 @@ const getTweets = async () => {
 };
 getTweets();
 
+module.exports.getTweets;
 // <% array.forEach(element => { %>
 // 	<form action="/" method="post">
 // 		<input name="title" value="<%= results.Title %> " type="text" />

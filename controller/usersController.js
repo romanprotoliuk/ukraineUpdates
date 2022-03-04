@@ -3,6 +3,7 @@ const router = express.Router();
 const db = require('../models');
 const cryptojs = require('crypto-js');
 const bcrypt = require('bcrypt');
+const axios = require('axios');
 require('dotenv').config();
 
 router.get('/new', (req, res) => {
@@ -50,8 +51,34 @@ router.get('/login', (req, res) => {
 	res.render('login.ejs');
 });
 
-router.get('/newsfeed', (req, res) => {
-	res.render('newsfeed.ejs');
+router.get('/newsfeed', async (req, res) => {
+	const bearerToken = process.env.BEARER_TOKEN;
+
+	const accounts = [ `nexta_tv`, `ukraine` ];
+	const options = {
+		headers: {
+			Authorization: `Bearer ${bearerToken}`
+		}
+	};
+
+	try {
+		const pedingPromises = accounts.map((account) =>
+			axios.get(`https://api.twitter.com/2/tweets/search/recent?query=from:${account}`, options)
+		);
+		const responses = await Promise.all(pedingPromises);
+		const tweets = [];
+		responses.forEach((response, i) => {
+			// console.log('$$$$$$$$$$$$$$$', response.data.data);
+			response.data.data.forEach((tweet) => {
+				tweets.push(tweet);
+			});
+		});
+
+		console.log(tweets);
+		res.render('newsfeed.ejs', { dataAll: tweets });
+	} catch (err) {
+		console.log(err);
+	}
 });
 
 router.get('/edit/:noteId', async (req, res) => {
