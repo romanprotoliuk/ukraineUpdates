@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const ejsLayout = require('express-ejs-layouts');
 const app = express();
@@ -5,7 +6,6 @@ const cookieParser = require('cookie-parser');
 const db = require('./models');
 const cryptojs = require('crypto-js');
 const methodOverride = require('method-override');
-require('dotenv').config();
 
 app.set('view engine', 'ejs');
 app.use(express.static('static'));
@@ -13,6 +13,8 @@ app.use(methodOverride('_method'));
 app.use(express.urlencoded({ extended: false }));
 app.use(ejsLayout);
 app.use(cookieParser());
+
+const PORT = process.env.PORT || 8000;
 
 // AUTHENTICATION MIDDLEWARE
 app.use(async (req, res, next) => {
@@ -40,6 +42,6 @@ app.get('/donations', (req, res) => {
 });
 
 // assign a port for our server to listen for incoming requests
-app.listen(8000, () => {
+app.listen(PORT, () => {
 	console.log('It is live on port 8000');
 });
