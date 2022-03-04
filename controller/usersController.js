@@ -62,7 +62,9 @@ router.get('/newsfeed', async (req, res) => {
 		}
 	};
 
-	try {
+	//api.twitter.com/2/tweets/search/recent?query=from:TwitterDev&tweet.fields=created_at&expansions=author_id&user.fields=created_at
+
+	https: try {
 		const pedingPromises = accounts.map((account) =>
 			// 'https://api.twitter.com/2/tweets/search/stream?tweet.fields=public_metrics&expansions=author_id';
 			axios.get(
