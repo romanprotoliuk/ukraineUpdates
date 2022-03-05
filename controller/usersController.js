@@ -6,6 +6,12 @@ const bcrypt = require('bcrypt');
 const axios = require('axios');
 require('dotenv').config();
 
+// if (req.cookie.userId) {
+
+// } else {
+// 	res.redirect('/users/login')
+// }
+
 router.get('/new', (req, res) => {
 	res.render('new.ejs');
 });
@@ -169,6 +175,44 @@ router.post('/noteform', async (req, res) => {
 	}
 });
 
+router.post('/add-tweet', async (req, res) => {
+	try {
+		// const [ user, userCreated ] = await db.user.findOrCreate({
+		// 	where: {
+		// 		userId: req.local.user
+		// 	}
+		// });
+
+		const user = res.locals.user;
+		const [ tweet, tweetCreated ] = await db.tweet.findOrCreate({
+			where: {
+				tweetId: req.body.tweetId,
+				text: req.body.text,
+				author_id: req.body.author_id
+			}
+		});
+
+		console.log(tweetCreated);
+		await user.addTweet(tweetCreated);
+		console.log(`${tweet.type} added to ${user.firstName}.`);
+	} catch (error) {}
+	res.redirect('/users/newsfeed');
+	console.log(req.body);
+});
+// try {
+// 	await db.tweet.create({
+// tweetId: req.body.tweetId,
+// text: req.body.text,
+// author_id: req.body.author_id,
+// userId: req.body.userId
+// 	});
+// 	console.log(req.body);
+
+// 	res.redirect('/users/newsfeed');
+// } catch (err) {
+// 	console.log(err);
+// }
+
 router.get('/logout', (req, res) => {
 	console.log('logging out');
 	res.clearCookie('userId');
@@ -176,3 +220,6 @@ router.get('/logout', (req, res) => {
 });
 
 module.exports = router;
+
+// findOrcreate,
+// res.local.user

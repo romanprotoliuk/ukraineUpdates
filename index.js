@@ -33,15 +33,14 @@ app.get('/', (req, res) => {
 	res.render('home.ejs');
 });
 
-app.get('/about', (req, res) => {
-	res.render('about.ejs');
-});
+// app.get('/about', (req, res) => {
+// 	res.render('about.ejs');
+// });
 
-app.get('/donations', (req, res) => {
-	res.render('donations.ejs');
-});
+// app.get('/donations', (req, res) => {
+// 	res.render('donations.ejs');
+// });
 
-// assign a port for our server to listen for incoming requests
 app.listen(PORT, () => {
 	console.log('It is live on port 8000');
 });

@@ -16,8 +16,10 @@ module.exports = (sequelize, DataTypes) => {
 		{
 			tweetId: DataTypes.STRING(255),
 			text: DataTypes.TEXT,
-			source: DataTypes.STRING(255),
-			url: DataTypes.TEXT
+			author_id: DataTypes.STRING(255),
+			username: DataTypes.STRING(255),
+			url: DataTypes.TEXT,
+			userId: DataTypes.INTEGER
 		},
 		{
 			sequelize,

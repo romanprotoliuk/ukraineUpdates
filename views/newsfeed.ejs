@@ -19,11 +19,11 @@
         <p class="paragraph">author id: <%= x.author_id %>  </p>
         <br>
         <div class="form-buttons">
-          <form action="" method="get">
+          <form action="/users/add-tweet" method="POST">
             <input  name="text" value="<%= x.text %> " type="text" />
             <input  name="tweetid" value="<%= x.id %> " type="text" />
             <input  name="userid" value="<%= user.id %> " type="text" />
-            <input  name="source" value="<%= x.author_id %> " type="text" />
+            <input  name="author_id" value="<%= x.author_id %> " type="text" />
             <button class="edit-btn" type="submit">add tweet</button>
           </form>
       </div>
@@ -31,3 +31,4 @@
     <%  }) %> 
   </ul>
 </div>
+
