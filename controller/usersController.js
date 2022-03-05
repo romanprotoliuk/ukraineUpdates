@@ -58,96 +58,108 @@ router.get('/login', (req, res) => {
 });
 
 router.get('/newsfeed', async (req, res) => {
-	const bearerToken = process.env.BEARER_TOKEN;
+	if (req.cookies.userId) {
+		const bearerToken = process.env.BEARER_TOKEN;
+		const accounts = [ `nexta_tv`, `ukraine` ];
+		const options = {
+			headers: {
+				Authorization: `Bearer ${bearerToken}`
+			}
+		};
 
-	const accounts = [ `nexta_tv`, `ukraine` ];
-	console.log(accounts);
-	const options = {
-		headers: {
-			Authorization: `Bearer ${bearerToken}`
-		}
-	};
-
-	//api.twitter.com/2/tweets/search/recent?query=from:TwitterDev&tweet.fields=created_at&expansions=author_id&user.fields=created_at
-
-	try {
-		const pedingPromises = accounts.map((account) =>
-			// 'https://api.twitter.com/2/tweets/search/stream?tweet.fields=public_metrics&expansions=author_id';
-			axios.get(
-				`https://api.twitter.com/2/tweets/search/recent?query=from:${account}&tweet.fields=created_at&expansions=author_id&user.fields=created_at`,
-				options
-			)
-		);
-		console.log(req.query);
-		const responses = await Promise.all(pedingPromises);
-		const tweets = [];
-		responses.forEach((response, i) => {
-			// console.log('$$$$$$$$$$$$$$$', response.data.data);
-			response.data.data.forEach((tweet) => {
-				tweets.push(tweet);
+		try {
+			const pedingPromises = accounts.map((account) =>
+				// 'https://api.twitter.com/2/tweets/search/stream?tweet.fields=public_metrics&expansions=author_id';
+				axios.get(
+					`https://api.twitter.com/2/tweets/search/recent?query=from:${account}&tweet.fields=created_at&expansions=author_id&user.fields=created_at`,
+					options
+				)
+			);
+			const responses = await Promise.all(pedingPromises);
+			const tweets = [];
+			responses.forEach((response) => {
+				response.data.data.forEach((tweet) => {
+					tweets.push(tweet);
+				});
 			});
-		});
 
-		console.log(tweets);
-		res.render('newsfeed.ejs', { dataAll: tweets });
-	} catch (err) {
-		console.log(err);
+			console.log(tweets);
+			res.render('newsfeed.ejs', { dataAll: tweets });
+		} catch (err) {
+			console.log(err);
+		}
+	} else {
+		res.redirect('/users/login');
 	}
 });
 
 router.get('/edit/:noteId', async (req, res) => {
-	// select current user logged in id and then grab notId by req.params.id
-	const note = await db.note.findOne({
-		where: {
-			id: req.params.noteId
-		}
-	});
-	// console.log(note.id);
-	res.render('edit.ejs', { note: note });
-});
-
-/////// new code
-router.put('/edit/:noteId', async (req, res) => {
-	await db.note.update(
-		{
-			subject: req.body.subject,
-			description: req.body.textarea,
-			url: req.body.link
-		},
-		{
-			where: {
-				id: req.body.noteId
-			}
-		}
-	);
-	res.redirect('/users/newsfeed');
-	// res.redirect('/users/profile/:id');
-});
-
-router.delete('/:noteId', async (req, res) => {
-	try {
-		await db.note.destroy({
+	if (req.cookies.userId) {
+		const note = await db.note.findOne({
 			where: {
 				id: req.params.noteId
 			}
 		});
-	} catch (err) {
-		console.log(err);
+		res.render('edit.ejs', { note: note });
+	} else {
+		res.redirect('/users/login');
+	}
+});
+
+/////// new code
+router.put('/edit/:noteId', async (req, res) => {
+	if (req.cookies.userId) {
+		await db.note.update(
+			{
+				subject: req.body.subject,
+				description: req.body.textarea,
+				url: req.body.link
+			},
+			{
+				where: {
+					id: req.body.noteId
+				}
+			}
+		);
+		res.redirect('/users/newsfeed');
+		// res.redirect('/users/profile/:id');
+	} else {
+		res.redirect('/users/login');
+	}
+});
+
+router.delete('/:noteId', async (req, res) => {
+	if (req.cookies.userId) {
+		try {
+			await db.note.destroy({
+				where: {
+					id: req.params.noteId
+				}
+			});
+		} catch (err) {
+			console.log(err);
+		}
+	} else {
+		res.redirect('/users/login');
 	}
 	res.redirect('/users/newsfeed');
 });
 
 router.get('/profilejournal/:id', async (req, res) => {
-	try {
-		const allData = await db.note.findAll({
-			where: {
-				userId: req.params.id
-			}
-		});
-		// console.log(allData);
-		res.render('profileJournal.ejs', { reports: allData });
-	} catch (err) {
-		console.log(err);
+	if (req.cookies.userId) {
+		try {
+			const allData = await db.note.findAll({
+				where: {
+					userId: req.params.id
+				}
+			});
+			// console.log(allData);
+			res.render('profileJournal.ejs', { reports: allData });
+		} catch (err) {
+			console.log(err);
+		}
+	} else {
+		res.redirect('/users/login');
 	}
 });
 
@@ -160,22 +172,32 @@ router.get('/noteform', (req, res) => {
 });
 
 router.post('/noteform', async (req, res) => {
-	try {
-		await db.note.create({
-			subject: req.body.subject,
-			url: req.body.link,
-			description: req.body.textarea,
-			userId: req.body.userId
-		});
-		console.log(req.body);
+	if (req.cookies.userId) {
+		try {
+			await db.note.create({
+				subject: req.body.subject,
+				url: req.body.link,
+				description: req.body.textarea,
+				userId: req.body.userId
+			});
+			console.log(req.body);
 
-		res.redirect('/users/newsfeed');
-	} catch (err) {
-		console.log(err);
+			res.redirect('/users/newsfeed');
+		} catch (err) {
+			console.log(err);
+		}
+	} else {
+		res.redirect('/users/login');
 	}
 });
 
 router.post('/add-tweet', async (req, res) => {
+	// protect this route
+	// if (req.cookies.userId) {
+	// } else {
+	// 	res.redirect('/users/login');
+	// }
+
 	try {
 		// const [ user, userCreated ] = await db.user.findOrCreate({
 		// 	where: {
