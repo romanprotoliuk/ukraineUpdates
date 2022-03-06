@@ -170,6 +170,23 @@ router.post('/add-tweet', async (req, res) => {
 	}
 });
 
+router.delete('/tweet/:Id', async (req, res) => {
+	if (req.cookies.userId) {
+		try {
+			await db.tweet.destroy({
+				where: {
+					id: req.params.Id
+				}
+			});
+		} catch (err) {
+			console.log(err);
+		}
+	} else {
+		res.redirect('/users/login');
+	}
+	res.redirect('/users/newsfeed');
+});
+
 /* This solution is not working */
 // try {
 // 	const userFound = await db.user.findOne({
