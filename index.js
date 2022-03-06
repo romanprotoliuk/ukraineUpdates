@@ -8,7 +8,7 @@ const cryptojs = require('crypto-js');
 const methodOverride = require('method-override');
 
 app.set('view engine', 'ejs');
-app.use(express.static('static'));
+app.use(express.static('public'));
 app.use(methodOverride('_method'));
 app.use(express.urlencoded({ extended: false }));
 app.use(ejsLayout);

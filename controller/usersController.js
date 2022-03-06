@@ -4,10 +4,12 @@ const db = require('../models');
 const axios = require('axios');
 require('dotenv').config();
 
+// `ukraine`, `zelenskyyUa`, `walterlekh`, ``
+
 router.get('/newsfeed', async (req, res) => {
 	if (req.cookies.userId) {
 		const bearerToken = process.env.BEARER_TOKEN;
-		const accounts = [ `nexta_tv`, `ukraine` ];
+		const accounts = [ `nexta_tv` ];
 		const options = {
 			headers: {
 				Authorization: `Bearer ${bearerToken}`
@@ -17,6 +19,7 @@ router.get('/newsfeed', async (req, res) => {
 		try {
 			const pedingPromises = accounts.map((account) =>
 				// 'https://api.twitter.com/2/tweets/search/stream?tweet.fields=public_metrics&expansions=author_id';
+				// &expansions=author_id&tweet.fields=created_at,lang,conversation_id&user.fields=created_at,entities
 				axios.get(
 					`https://api.twitter.com/2/tweets/search/recent?query=from:${account}&tweet.fields=created_at&expansions=author_id&user.fields=created_at`,
 					options
@@ -29,7 +32,6 @@ router.get('/newsfeed', async (req, res) => {
 					tweets.push(tweet);
 				});
 			});
-
 			console.log(tweets);
 			res.render('newsfeed.ejs', { dataAll: tweets });
 		} catch (err) {
@@ -53,7 +55,6 @@ router.get('/edit/:noteId', async (req, res) => {
 	}
 });
 
-/////// new code
 router.put('/edit/:noteId', async (req, res) => {
 	if (req.cookies.userId) {
 		await db.note.update(
@@ -69,7 +70,6 @@ router.put('/edit/:noteId', async (req, res) => {
 			}
 		);
 		res.redirect('/users/newsfeed');
-		// res.redirect('/users/profile/:id');
 	} else {
 		res.redirect('/users/login');
 	}
@@ -100,7 +100,6 @@ router.get('/profilejournal/:id', async (req, res) => {
 					userId: req.params.id
 				}
 			});
-			// console.log(allData);
 			res.render('profileJournal.ejs', { reports: allData });
 		} catch (err) {
 			console.log(err);

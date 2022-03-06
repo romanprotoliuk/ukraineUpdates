@@ -1,27 +1,33 @@
 <div class="body-wrapper">
-  <h1>Sign Up</h1> 
+  <div class="wrapper-all">
+  <div class="form-wrapper">
+  <h1 class="sign-up-h1">Sign Up</h1> 
   <form action="/signup" method="POST">
-    <div>
-      <label for="firstName">First name:</label>
-      <input type="text" name="firstName" id="firstName">
+    <div class="field">
+      <!-- <label for="firstName">First name:</label> -->
+      <input class="input" type="text" name="firstName" id="firstName" placeholder="First name">
       </div>
     <div>
-    <div>
-      <label for="lastName">Last name:</label>
-      <input type="text" name="lastName" id="lastName">
+    <div class="field">
+      <!-- <label class="label" for="lastName">Last name:</label> -->
+      <input class="input" type="text" name="lastName" id="lastName" placeholder="Last name">
     </div>
-    <div>
-      <label for="userName">User name:</label>
-      <input type="text" name="userName" id="userName">
+    <div class="field">
+      <!-- <label class="label" for="userName">User name:</label> -->
+      <input class="input" type="text" name="userName" id="userName" placeholder="User name">
     </div>
-    <div>
-      <label for="email">Email:</label>
-      <input type="email" name="email" id="email">
+    <div class="field">
+      <!-- <label class="label" for="email">Email:</label> -->
+      <input class="input" type="email" name="email" id="email" placeholder="Email">
     </div>
-    <div>
-      <label for="password">Password:</label>
-      <input type="password" name="password" id="password">
+    <div class="field">
+      <!-- <label class="label" for="password">Password:</label> -->
+      <input class="input" type="password" name="password" id="password" placeholder="Password">
     </div>
-    <button type="submit">Sign Up</button>
-  </form>
+    <div class="btn-wrapper">
+      <button class="btn-signup" type="submit">Submit</button>
+    </div>
+    </form>
+  </div>
+</div>
 </div>
