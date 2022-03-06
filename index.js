@@ -28,6 +28,8 @@ app.use(async (req, res, next) => {
 });
 
 app.use('/users', require('./controller/usersController'));
+app.use('/signup', require('./controller/signupController'));
+app.use('/login', require('./controller/loginController'));
 
 app.get('/', (req, res) => {
 	res.render('home.ejs');

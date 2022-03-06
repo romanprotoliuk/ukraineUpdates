@@ -6,8 +6,8 @@
   <div class="nav-link-wrap-right">
 
     <% if (!user) { %>
-      <a class="right-side" href="/users/new">Sign Up</a>
-      <a class="right-side" href="/users/login">Log In</a>
+      <a class="right-side" href="/signup">Sign Up</a>
+      <a class="right-side" href="/login">Log In</a>
     <% } else { %>
       <a class="right-side" href="/users/profilejournal/<%= user.id %> ">Profile</a>
       <a class="right-side" href="/users/newsfeed">Newsfeed</a>
