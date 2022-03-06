@@ -1,1 +1,13 @@
 <h2>Your saved tweets</h2>
+<ul>
+  <% tweets.forEach((tweet, i) => { %>
+    <li>
+      <p class="paragraph"><%= tweet.text %>  </p>
+      <div class="form-buttons">
+        <form action="/users/<%= tweet.id %>?_method=DELETE" method="post">
+          <button type="submit">Delete</button>
+        </form>
+    </div>
+    </li>
+  <%  }) %> 
+</ul>

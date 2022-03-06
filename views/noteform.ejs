@@ -1,23 +1,29 @@
 <div class="body-wrapper">
-  <h1>Note Form</h1> 
+  <div class="wrapper-all">
+    <div class="form-wrapper">
+  <h1 class="sign-up-h1">Note Form</h1> 
   <form action="/users/noteform" method="POST">
-    <div>
+    <div class="field">
       <label for="subject">Subject:</label>
-      <br>
+  
       <input type="text" name="subject" id="subject">
     </div>
-    <div>
+    <div class="field">
       <label for="link">Link:</label>
-      <br>
+  
       <input type="url" name="link" id="link">
       </div>
     <div>
       <label for="textarea">Text:</label>
-      <br>
+  
       <textarea name="textarea" id="" cols="30" rows="10"></textarea>
-      <br>
+
       <input type="hidden" name="userId" value=<%= user.id %> >
-      <button type="submit">Submit</button>
-     </div> 
+      <div class="btn-wrapper">
+        <button class="btn-signup" type="submit">Submit</button>
+      </div> 
+    </div> 
   </form>
+</div>
+</div>
 </div>

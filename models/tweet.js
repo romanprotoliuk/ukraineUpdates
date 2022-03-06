@@ -9,7 +9,10 @@ module.exports = (sequelize, DataTypes) => {
      */
 		static associate(models) {
 			// define association here
-			models.tweet.belongsToMany(models.user, { through: 'user_tweet' });
+			// this solution did not work
+			// models.tweet.belongsToMany(models.user, { through: 'user_tweet', onDelete: 'CASCADE' });
+			// switched to this
+			models.tweet.belongsTo(models.user);
 		}
 	}
 	tweet.init(

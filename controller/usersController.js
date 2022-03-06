@@ -32,7 +32,7 @@ router.get('/newsfeed', async (req, res) => {
 					tweets.push(tweet);
 				});
 			});
-			console.log(tweets);
+			// console.log(tweets);
 			res.render('newsfeed.ejs', { dataAll: tweets });
 		} catch (err) {
 			console.log(err);
@@ -110,7 +110,20 @@ router.get('/profilejournal/:id', async (req, res) => {
 });
 
 router.get('/profiletweets/:id', async (req, res) => {
-	res.render('profileTweets.ejs');
+	if (req.cookies.userId) {
+		try {
+			const allData = await db.tweet.findAll({
+				where: {
+					userId: req.params.id
+				}
+			});
+			res.render('profileTweets.ejs', { tweets: allData });
+		} catch (err) {
+			console.log(err);
+		}
+	} else {
+		res.redirect('/users/login');
+	}
 });
 
 router.get('/noteform', (req, res) => {
@@ -138,48 +151,62 @@ router.post('/noteform', async (req, res) => {
 });
 
 router.post('/add-tweet', async (req, res) => {
-	// protect this route
-	// if (req.cookies.userId) {
-	// } else {
-	// 	res.redirect('/users/login');
-	// }
-
-	try {
-		// const [ user, userCreated ] = await db.user.findOrCreate({
-		// 	where: {
-		// 		userId: req.local.user
-		// 	}
-		// });
-
-		const user = res.locals.user;
-		const [ tweet, tweetCreated ] = await db.tweet.findOrCreate({
-			where: {
-				tweetId: req.body.tweetId,
+	if (req.cookies.userId) {
+		try {
+			await db.tweet.create({
+				tweetId: req.body.tweetid,
 				text: req.body.text,
-				author_id: req.body.author_id
-			}
-		});
+				author_id: req.body.author_id,
+				userId: req.body.userid
+			});
 
-		console.log(tweetCreated);
-		await user.addTweet(tweetCreated);
-		console.log(`${tweet.type} added to ${user.firstName}.`);
-	} catch (error) {}
-	res.redirect('/users/newsfeed');
-	console.log(req.body);
+			console.log(req.body);
+			res.redirect('/users/newsfeed');
+		} catch (err) {
+			console.log(err);
+		}
+	} else {
+		res.redirect;
+	}
 });
-// try {
-// 	await db.tweet.create({
-// tweetId: req.body.tweetId,
-// text: req.body.text,
-// author_id: req.body.author_id,
-// userId: req.body.userId
-// 	});
-// 	console.log(req.body);
 
-// 	res.redirect('/users/newsfeed');
-// } catch (err) {
-// 	console.log(err);
-// }
+/* This solution is not working */
+// try {
+// 	const userFound = await db.user.findOne({
+// 		where: {
+// 			id: res.locals.user.id
+// 		}
+// 	});
+// 	console.log('$$$$$$$$$$$$$', userFound);
+// const [ tweet, tweetCreated ] = await db.tweet.findOrCreate({
+// 	where: {
+// 		tweetId: req.body.tweetid,
+// 		text: req.body.text,
+// 		author_id: req.body.author_id
+// 	}
+
+// 	console.log('$$$$$$$$$$$$$#########', tweet);
+// 	await tweet.createTweet(userFound);
+// 	console.log(`${tweet.type} added to ${user.firstName}.`);
+// } catch (error) {}
+// res.redirect('/users/newsfeed');
+// console.log('@@@@@@@@@@@@@@@@@@@@@@@@', req.body);
+
+/* This solution is not working */
+// 	if (res.locals.user) {
+// 		try {
+// 			const [ tweet, tweetCreated ] = await db.tweet.findOrCreate({
+// 				where: {
+// 					//
+// 					tweetId: req.body.tweetid,
+// 					text: req.body.text,
+// 					author_id: req.body.author_id
+// 				}
+// 			});
+// 			await tweet.addUser(res.locals.user.id);
+// 		} catch (error) {}
+// 	}
+// });
 
 router.get('/logout', (req, res) => {
 	console.log('logging out');
@@ -188,6 +215,3 @@ router.get('/logout', (req, res) => {
 });
 
 module.exports = router;
-
-// findOrcreate,
-// res.local.user
