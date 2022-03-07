@@ -1,12 +1,12 @@
 <h2 class="title">Your saved tweets</h2>
 
-<div class="wrapper-shadow">
-  <% tweets.forEach((tweet, i) => { %>
+<% tweets.forEach((tweet, i) => { %>
+  <div class="wrapper-shadow">
       <p class="paragraph"><%= tweet.text %>  </p>
       <div class="form-buttons">
         <form action="/users/tweet/<%= tweet.id %>?_method=DELETE" method="post">
           <button class="add-btn" type="submit">Delete</button>
         </form>
     </div>
+  </div>
   <%  }) %> 
-</div>

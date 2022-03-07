@@ -1,26 +1,25 @@
 <div class="body-wrapper">
-  <h1>Note Form</h1> 
+  <div class="wrapper-all">
+  <div class="form-wrapper">
+  <h1 class="sign-up-h1">Edit Note Form</h1> 
   <form action="/users/edit/<% note.id %> ?_method=PUT" method="POST">
-    <div>
-      <label for="subject">Subject:</label>
-      <br>
+    <div class="field">
       <input type="text" name="subject" id="subject" value="<%= note.subject %>">
     </div>
-    <div>
-      <label for="link">Link:</label>
-      <br>
+    <div class="field">
       <input type="url" name="link" id="link" value="<%= note.url %>">
       </div>
-    <div>
-      <label for="textarea">Text:</label>
-      <br>
+    <div class="field">
       <!-- <input name="textarea" type="text" id="text-area" value="<%= note.description %>"> -->
       <!-- <textarea name="textarea" id="text-area" cols="30" rows="10" placeholder="<%= note.description %>"></textarea> -->
       <input type="text" name="textarea" id="textarea" value="<%= note.description %>">
-      <br>
       <input type="hidden" name="userId" value=<%= user.id %> >
       <input type="hidden" name="noteId" value=<%= note.id %> >
-      <button type="submit">Submit</button>
-     </div> 
+    </div> 
+    <div class="btn-wrapper">
+      <button class="btn-signup" type="submit">Submit</button>
+    </div>
   </form>
+</div>
+</div>
 </div>

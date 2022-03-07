@@ -186,6 +186,30 @@ h3 {
   height: 30px;
 }
 
+input[type=text] {
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 4px;
+}
+
+input[type=email] {
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 4px;
+}
+
+input[type=password] {
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 4px;
+}
+
+input[type=url] {
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 4px;
+}
+
 label {
   padding-bottom: 10px;
 }

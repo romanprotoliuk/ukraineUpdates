@@ -1,7 +1,7 @@
 <h2 class="title">Your war crime reports</h2>
 
-<div class="wrapper-shadow">
-  <% reports.forEach((report, i) => { %>
+<% reports.forEach((report, i) => { %>
+  <div class="wrapper-shadow">
       <h4 class="war-subject"><%= report.subject %></h4>
       <p class="paragraph"><%= report.description %>  </p>
       <div class="war-links">
@@ -15,5 +15,5 @@
           <button class="add-btn" type="submit">Delete</button>
         </form>
     </div>
+  </div>
   <%  }) %> 
-</div>

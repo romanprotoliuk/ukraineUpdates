@@ -4,20 +4,15 @@
   <h1 class="sign-up-h1">Note Form</h1> 
   <form action="/users/noteform" method="POST">
     <div class="field">
-      <label for="subject">Subject:</label>
-  
-      <input type="text" name="subject" id="subject">
+      <input class="input" type="text" name="subject" id="subject" placeholder="Subject">
     </div>
     <div class="field">
-      <label for="link">Link:</label>
-  
-      <input type="url" name="link" id="link">
+      <input class="input" type="url" name="link" id="link" placeholder="Link">
       </div>
     <div>
-      <label for="textarea">Text:</label>
-  
-      <textarea name="textarea" id="" cols="30" rows="10"></textarea>
-
+    <div class="field">
+      <input class="input" type="text" name="textarea" id="text" placeholder="ext">
+    </div>
       <input type="hidden" name="userId" value=<%= user.id %> >
       <div class="btn-wrapper">
         <button class="btn-signup" type="submit">Submit</button>
