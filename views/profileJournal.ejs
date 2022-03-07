@@ -2,15 +2,15 @@
   <div class="profile-wrapper">
   <div class="top-header-wrap">
     <div class="profile-left-side">
-      <h1>Profile</h1>
+      <!-- <h1>Profile</h1> -->
       <div class="profile-username">
-        <h3>hi, <%= user.firstName %> </h3>
+        <h3 class="greetings">Hi, <%= user.firstName %> </h3>
       </div>
     </div>
   
     <div class="profile-right-side">
-      <a class="right-side" href="/users/profilejournal/<%= user.id %>">War crime reports</a>
-      <a class="right-side" href="/users/profiletweets/<%= user.id %>">Tweets</a>
+      <a class="right-side nav-link" href="/users/profilejournal/<%= user.id %>">War crime reports</a>
+      <a class="right-side nav-link" href="/users/profiletweets/<%= user.id %>">Tweets</a>
     </div>
   </div>
   <br>

@@ -6,31 +6,29 @@
     </div>
 
     <div>
-      <a href="/users/noteform">Document a war crime</a>
+      <a class="document-btn" href="/users/noteform">Document a war crime</a>
     </div>
   </div>
 
 <%  %> 
 
-  <ul>
     <% dataAll.forEach((x, i) => { %>
-      <li>
+      <div class="tweet-wrapper-newsfeed">
         <h4 class="war-subject"><%= x.text %></h4>
-        <p class="paragraph">tweet id: <%= x.id %>  </p>
-        <p class="paragraph">author id: <%= x.author_id %>  </p>
-        <br>
+        <!-- <p class="paragraph">tweet id: <%= x.id %>  </p>
+        <p class="paragraph">author id: <%= x.author_id %>  </p> -->
         <div class="form-buttons">
           <form action="/users/add-tweet" method="POST">
-            <input  name="text" value="<%= x.text %> " type="text" />
-            <input  name="tweetid" value="<%= x.id %> " type="text" />
-            <input  name="userid" value="<%= user.id %> " type="text" />
-            <input  name="author_id" value="<%= x.author_id %> " type="text" />
-            <button class="edit-btn" type="submit">add tweet</button>
+            <input hidden name="text" value="<%= x.text %> " type="text" />
+            <input hidden name="tweetid" value="<%= x.id %> " type="text" />
+            <input hidden name="userid" value="<%= user.id %> " type="text" />
+            <input hidden name="author_id" value="<%= x.author_id %> " type="text" />
+            <button class="add-btn" type="submit">Add to profile</button>
           </form>
+        </div>
       </div>
-      </li>
     <%  }) %> 
-  </ul>
+  
 </div>
 </div>
 

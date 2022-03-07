@@ -18,7 +18,7 @@ body {
   display: flex;
   padding: 40px 30px; 
   justify-content: space-between;
-  width: 95vw;
+  width: 90vw;
   margin: 0 auto;
   z-index: 10;
 }
@@ -46,6 +46,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-bottom: 4%;
 }
 
 .top-header-wrap {
@@ -73,7 +74,7 @@ body {
 
 .form-buttons {
   display: flex;
-  margin-bottom: 40px;
+  padding-top: 20px;
 }
 
 .profile-username {
@@ -167,6 +168,7 @@ h3 {
   color: white;
   border: none;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 .field {
@@ -201,12 +203,76 @@ label {
   padding-top: 10%;
 }
 
+.tweet-wrapper-newsfeed {
+  padding: 20px;
+  margin-bottom: 40px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+.add-btn {
+  font-weight: 600;
+  background-color: black;
+  padding: 10px 10px;
+  
+  cursor: pointer;
+  color: white;
+  background-color: #0D0D0D;
+  border-radius: 5px;
+  /* border-width: 2px;
+  border-style: solid;
+  border-color: blue; */
+  border: none;
+}
+
+.document-btn {
+  padding: 20px;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: #0D0D0D;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.document-btn-a {
+  color: white;
+}
+
+/* Profile */
+.greetings {
+  font-size: 18px;
+}
+
+.wrapper-shadow {
+  padding: 20px;
+  margin-bottom: 40px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+.title {
+  font-size: 18px;
+  padding-bottom: 40px;
+}
+
 /* profile journal*/
 .profile-wrapper {
   padding-top: 10%;
 }
 
-/* profile tweeter */
+/* .link-crime-reports {
+  margin-bottom: 10px;
+} */
+
+/* .add-btn:not(:last-child) {
+  padding-bottom: 10px;
+} */
+
+.add-btn {
+  margin-right: 10px;
+}
+
+/* profile tweet */
 .tweet-wrapper {
   padding-top: 10%;
 }
