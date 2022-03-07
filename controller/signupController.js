@@ -19,7 +19,6 @@ router.post('/', async (req, res) => {
 		newUser.password = hashedPassword;
 		newUser.firstName = req.body.firstName;
 		newUser.lastName = req.body.lastName;
-		newUser.userName = req.body.userName;
 		await newUser.save();
 
 		const encryptedUserId = cryptojs.AES.encrypt(newUser.id.toString(), process.env.SECRET);

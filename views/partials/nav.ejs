@@ -1,18 +1,18 @@
 <nav class="nav">
 <div class="nav-wrapper">
   <div class="nav-link-wrap-left"> 
-    <a class="left-side nav-link" href="/">Home</a>
+    <a class="left-side nav-link-u" href="/">Home</a>
   </div>
 
   <div class="nav-link-wrap-right">
 
     <% if (!user) { %>
-      <a class="right-side nav-link" href="/signup">Sign Up</a>
-      <a class="right-side nav-link" href="/login">Log In</a>
+      <a class="right-side nav-link-u" href="/signup">Sign Up</a>
+      <a class="right-side nav-link-u" href="/login">Log In</a>
     <% } else { %>
-      <a class="right-side nav-link" href="/users/profilejournal/<%= user.id %> ">Profile</a>
-      <a class="right-side nav-link" href="/users/newsfeed">Newsfeed</a>
-      <a class="right-side nav-link" href="/users/logout">Logout</a>
+      <a class="right-side nav-link-u" href="/users/profilejournal/<%= user.id %> ">Profile</a>
+      <a class="right-side nav-link-u" href="/users/newsfeed">Newsfeed</a>
+      <a class="right-side nav-link-u" href="/users/logout">Logout</a>
     <% } %> 
   </div>
 </div>
