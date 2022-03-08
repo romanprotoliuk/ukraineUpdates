@@ -75,9 +75,9 @@ https://developer.twitter.com/en
 
 ## MVP goals 
 - [x] Authentication 
-- [x]Twitter API successfully working 
+- [x] Twitter API successfully working 
 - [x] Newsfeed page
-- [x]Document war crimes form working 
+- [x] Document war crimes form working 
 - [x] Notes showing up in my profile page
 - [x] Delete/Edit notes
 
