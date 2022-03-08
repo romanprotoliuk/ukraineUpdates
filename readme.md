@@ -1,9 +1,16 @@
 # The Russo-Ukrainian War Updates
 https://ukraine-war-updates.herokuapp.com/
 
+
 ## Project Idea/Description 
 
 With this project I want to highlight and update people on what is going on in Ukraine. During these times it is very important to document war crimes against Ukranian people by their opposition and stop misinformation from spreading on the media. This webapp serves as a tool for people to document The Russo-Ukranian war as it unfolds. A user will be able to browse through latest updates on the war and document war crimes as well as misinformation and save tweets to their profle.
+
+
+## Website Functionality
+
+To get access to user newsfeed please sign up first!
+
 
 ## Installation 
 1. `Fork` and `clone` repo [UkraineUpdates](https://github.com/romanprotoliuk/ukraineUpdates)
@@ -18,6 +25,7 @@ With this project I want to highlight and update people on what is going on in U
 10. Run `sequelize db:migrate` to run migrations 
 11. Run `nodemon` to start your application. If you haven't installed it, run `npm install -g nodemon` to install it globally
 
+
 ## Tech Stack
 * Postgres
 * Express
@@ -25,6 +33,7 @@ With this project I want to highlight and update people on what is going on in U
 * Vanilla JavaScript
 * EJS
 * CSS 
+
 
 ## Choice of API
 Most of the data for this app will be pulled form Twitter APIv2, from my experience it has been an effective source especially when it comes to live updates. For this project it will be extremly important to use verified acount tweets.
@@ -81,11 +90,13 @@ https://developer.twitter.com/en
 - [x] Notes showing up in my profile page
 - [x] Delete/Edit notes
 
+
 ## Stretch goals 
 - [ ] Implement multiple sources of API, Twitter, Reddit, News 
 - [ ] Filter them out 
 - [ ] For each API show what source they've been pulled from 
 - [ ] Implement image upload for notes
+
 
 ## Improvements Reflection
 * make about route where I talk about why I did this project and details of the conflict
@@ -95,6 +106,7 @@ https://developer.twitter.com/en
 * responsivness 
 * error handling 
 * form validation 
+
 
 ## Takeaways
 * even though I was in docs alot I feel like I need to spend more time going over docs
