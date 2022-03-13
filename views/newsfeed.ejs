@@ -6,25 +6,36 @@
     </div>
 
     <div>
-      <a class="document-btn" href="/users/noteform">Journal</a>
+      <a class="document-btn" href="/note">Journal</a>
     </div>
   </div>
 
 <%  %> 
 
     <% dataAll.forEach((x, i) => { %>
+      
       <div class="tweet-wrapper-newsfeed">
         <h4 class="war-subject"><%= x.text %></h4>
         <!-- <p class="paragraph">tweet id: <%= x.id %>  </p>
         <p class="paragraph">author id: <%= x.author_id %>  </p> -->
         <div class="form-buttons">
-          <form action="/users/add-tweet" method="POST">
-            <input hidden name="text" value="<%= x.text %> " type="text" />
-            <input hidden name="tweetid" value="<%= x.id %> " type="text" />
-            <input hidden name="userid" value="<%= user.id %> " type="text" />
-            <input hidden name="author_id" value="<%= x.author_id %> " type="text" />
-            <button class="add-btn" type="submit">Add to profile</button>
-          </form>
+          
+          <% const sliced = x.id.slice(6, -2)%>
+          <% if (tIds.includes(parseInt(sliced))) { %>
+            
+            <button class="added" disabled>Added</button>
+            
+            <% } else { %>
+              <form action="/tweet" method="POST">
+                <input hidden name="text" value="<%= x.text %> " type="text" />
+                <input hidden name="tweetid" value="<%= sliced %> " type="text" />
+                <input hidden name="userid" value="<%= user.id %> " type="text" />
+                <input hidden name="author_id" value="<%= x.author_id %> " type="text" />
+                <button class="add-btn add" type="submit">Add to profile</button>
+              </form>
+              
+            <% } %>  
+
         </div>
       </div>
     <%  }) %> 
@@ -32,3 +43,7 @@
 </div>
 </div>
 
+
+
+
+ 

@@ -3,9 +3,11 @@
 <% tweets.forEach((tweet, i) => { %>
   <div class="wrapper-shadow">
       <p class="paragraph"><%= tweet.text %>  </p>
+      <!-- <p class="paragraph"><%= tweet.id %>  </p>
+      <p class="paragraph"><%= tweet.tweetId %>  </p> -->
       <div class="form-buttons">
-        <form action="/users/tweet/<%= tweet.id %>?_method=DELETE" method="post">
-          <button class="add-btn" type="submit">Delete</button>
+        <form action="/note/<%= tweet.id %>/tweet?_method=DELETE" method="post">
+          <button class="add-btn-x" type="submit">Delete</button>
         </form>
     </div>
   </div>

@@ -166,12 +166,13 @@ h3 {
   font-weight: 600;
   width: 100%;
   height: 60px;
-  background-color: #0D0D0D;
+  background-image: linear-gradient(to right, #0D0D0D 0%, #414345  51%, #0D0D0D  100%);
   color: white;
   border: none;
-  border-radius: 10px;
+  border-radius: 5px;
   cursor: pointer;
 }
+
 
 .field {
   display: flex;
@@ -235,31 +236,130 @@ label {
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.05);
 }
 
-.add-btn {
+/* .add-btn {
   font-weight: 600;
   background-color: black;
-  padding: 10px 10px;
+  padding: 15px 45px;
   
   cursor: pointer;
   color: white;
   background-color: #0D0D0D;
   border-radius: 5px;
-  /* border-width: 2px;
+  border-width: 2px;
   border-style: solid;
-  border-color: blue; */
+  border-color: blue; 
   border: none;
-}
+} */
 
-.document-btn {
-  padding: 20px;
-  font-size: 16px;
+
+
+.add-btn-x {background-image: linear-gradient(to right, #0D0D0D 0%, #414345  51%, #0D0D0D  100%)}
+/* .add {background-image: linear-gradient(to right, #004FF9 0%, #FFF94C  51%, #004FF9  100%)} */
+.add-btn-x {
+  width: 100px;
+  margin-right: 10px;
   font-weight: 600;
-  background-color: #0D0D0D;
-  color: white;
+  font-size: 10px;
+  padding: 15px 25px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;            
+  box-shadow: 0 0 20px #eee;
+  border-radius: 5px;
+  display: block;
   border: none;
-  border-radius: 10px;
+  cursor: pointer;
+ }
+
+ .add-btn-x:hover {
+   background-position: right center; /* change the direction of the change here */
+   color: #fff;
+   text-decoration: none;
+ }
+
+
+.add {background-image: linear-gradient(to right, #0D0D0D 0%, #414345  51%, #0D0D0D  100%)}
+/* .add {background-image: linear-gradient(to right, #004FF9 0%, #FFF94C  51%, #004FF9  100%)} */
+.add {
+  font-weight: 600;
+  font-size: 10px;
+  padding: 15px 25px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;            
+  box-shadow: 0 0 20px #eee;
+  border-radius: 5px;
+  display: block;
+  border: none;
+  cursor: pointer;
+ }
+
+ .add:hover {
+   background-position: right center; /* change the direction of the change here */
+   color: #fff;
+   text-decoration: none;
+ }
+
+ .document-btn {background-image: linear-gradient(to right, #0D0D0D 0%, #414345  51%, #0D0D0D  100%)}
+
+ .document-btn {
+  font-weight: 600;
+  font-size: 16px;
+  padding: 15px 25px;
+  text-align: center;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;            
+  box-shadow: 0 0 20px #eee;
+  border-radius: 5px;
+  display: block;
+  border: none;
   cursor: pointer;
 }
+
+.document-btn:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+ 
+
+
+/* .added {
+  font-weight: 600;
+  background-color: rgb(41, 117, 41);
+  padding: 10px 10px;
+  
+  cursor: pointer;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  cursor: none;
+} */
+
+
+.added {background-image: linear-gradient(to right, #28292b5e 0%, #8d8c7960  51%, #24242562  100%)}
+.added {
+  font-weight: 600;
+  font-size: 10px;
+  padding: 15px 25px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;            
+  box-shadow: 0 0 20px #eee;
+  border-radius: 5px;
+  display: block;
+  border: none;
+ }
+
+
+
 
 .document-btn-a {
   color: white;
@@ -295,9 +395,9 @@ label {
   padding-bottom: 10px;
 } */
 
-.add-btn {
+/* .add-btn {
   margin-right: 10px;
-}
+} */
 
 /* profile tweet */
 .tweet-wrapper {

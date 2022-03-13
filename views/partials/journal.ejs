@@ -8,11 +8,11 @@
         <a class="link-crime-reports" href="<%= report.url %>" target="_blank"><%= report.url %> </a>
       </div>
       <div class="form-buttons">
-        <form action="/users/edit/<%=report.id %> " method="get">
-          <button class="add-btn" type="submit">Edit</button>
+        <form action="/note/edit/<%=report.id %> " method="get">
+          <button class="add-btn-x" type="submit">Edit</button>
         </form>
-        <form action="/users/<%= report.id %>?_method=DELETE" method="post">
-          <button class="add-btn" type="submit">Delete</button>
+        <form action="/note/<%= report.id %>?_method=DELETE" method="post">
+          <button class="add-btn-x" type="submit">Delete</button>
         </form>
     </div>
   </div>

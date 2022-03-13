@@ -10,9 +10,9 @@ module.exports = (sequelize, DataTypes) => {
 		static associate(models) {
 			// define association here
 			models.user.hasMany(models.note);
-			models.user.hasMany(models.tweet);
+
 			// // this solution did not work
-			// models.user.belongsToMany(models.tweet, { through: 'user_tweet', onDelete: 'CASCADE' });
+			models.user.belongsToMany(models.tweet, { through: 'user_tweet' });
 		}
 	}
 	user.init(

@@ -10,9 +10,9 @@ module.exports = (sequelize, DataTypes) => {
 		static associate(models) {
 			// define association here
 			// this solution did not work
-			// models.tweet.belongsToMany(models.user, { through: 'user_tweet', onDelete: 'CASCADE' });
+			models.tweet.belongsToMany(models.user, { through: 'user_tweet', onDelete: 'CASCADE' });
 			// switched to this
-			models.tweet.belongsTo(models.user);
+			// models.tweet.belongsTo(models.user);
 		}
 	}
 	tweet.init(
@@ -21,8 +21,7 @@ module.exports = (sequelize, DataTypes) => {
 			text: DataTypes.TEXT,
 			author_id: DataTypes.STRING(255),
 			username: DataTypes.STRING(255),
-			url: DataTypes.TEXT,
-			userId: DataTypes.INTEGER
+			url: DataTypes.TEXT
 		},
 		{
 			sequelize,
