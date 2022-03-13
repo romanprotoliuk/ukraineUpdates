@@ -23,19 +23,30 @@
           <% const sliced = x.id.slice(6, -2)%>
           <% if (tIds.includes(parseInt(sliced))) { %>
             
-            <button class="added" disabled>Added</button>
-            
+            <div class="added-btn-div">
+              <div class="inside-form-details">
+                <p class="space"> Author id: <%= x.author_id %> </p>
+                <p> created at: <%= x.created_at %> </p>
+              </div>
+              <div> 
+                <button class="added" disabled>Added</button>
+              </div>
+            </div>
             <% } else { %>
               <form action="/tweet" method="POST">
                 <input hidden name="text" value="<%= x.text %> " type="text" />
                 <input hidden name="tweetid" value="<%= sliced %> " type="text" />
                 <input hidden name="userid" value="<%= user.id %> " type="text" />
                 <input hidden name="author_id" value="<%= x.author_id %> " type="text" />
+                <div class="inside-form-details">
+                  <p class="space"> Author id: <%= x.author_id %> </p>
+                  <p> created at: <%= x.created_at %> </p>
+                </div>
                 <button class="add-btn add" type="submit">Add to profile</button>
               </form>
               
             <% } %>  
-
+            
         </div>
       </div>
     <%  }) %> 

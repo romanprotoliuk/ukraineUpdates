@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser');
 const db = require('./models');
 const cryptojs = require('crypto-js');
 const bcrypt = require('bcrypt');
-
+const moment = require('moment');
 const axios = require('axios');
 const methodOverride = require('method-override');
 
@@ -95,10 +95,13 @@ app.get('/tweets', async (req, res) => {
 			}
 		};
 
+		// "https://api.twitter.com/2/tweets/search/recent?query=from:${account}&tweet.fields=created_at&expansions=author_id&user.fields=created_at"
+
 		try {
+			const params = {};
 			const pedingPromises = accounts.map((account) =>
 				axios.get(
-					`https://api.twitter.com/2/tweets/search/recent?query=from:${account}&tweet.fields=created_at&expansions=author_id&user.fields=created_at`,
+					`https://api.twitter.com/2/tweets/search/recent?query=from:${account}&tweet.fields=public_metrics,created_at&expansions=author_id&user.fields=created_at`,
 					options
 				)
 			);
@@ -112,26 +115,53 @@ app.get('/tweets', async (req, res) => {
 					// console.log(tweet.id);
 				});
 			});
-			// console.log(tweets.id);
+
+			const time = moment().format(tweets[0].created_at);
+			console.log('These are tweets: ', tweets[0].created_at);
+			console.log(time);
+
+			// const tweetIds = tweets.map((id) => {
+			// 	return id.id;
+			// });
+
+			// const pendingUserNames = tweetIds.map((tweetId) => {
+			// 	console.log('pending: ', tweetId);
+			// 	const response = axios.get(
+			// 		`https://api.twitter.com/2/tweets/${tweetId}?expansions=attachments.media_keys,referenced_tweets.id,author_id`,
+			// 		options
+			// 	);
+			// 	return response;
+			// });
+
+			// const responsesForUsernames = await Promise.all(pendingUserNames);
+
+			// console.log(res);
+
+			// console.log(tweetIds);
+
+			// const searchByTweetId = await axios.get(
+			// 	`https://api.twitter.com/2/tweets/1502834719716790274?expansions=attachments.media_keys,referenced_tweets.id,author_id`,
+			// 	options
+			// );
+
+			// console.log(searchByTweetId.data.includes.users[0].username);
+
+			// get all tweet ids from the database
 			const user = await db.user.findAll({
 				where: {
 					id: res.locals.user.id
 				},
 				include: db.tweet
 			});
-			let arrWithIds = [];
+
 			let arrtweets;
-			user.forEach((element, i) => {
+			user.forEach((element) => {
 				const allTweets = element.tweets;
-				allTweets.forEach((tweet, i) => {
-					arrWithIds = parseInt(tweet.dataValues.tweetId.slice(-9));
-				});
 				arrtweets = allTweets.map((tw) => {
 					const spacesout = tw.dataValues.tweetId;
 					return parseInt(spacesout);
 				});
 			});
-			console.log('##########' + arrtweets);
 			res.render('newsfeed.ejs', { tIds: arrtweets, dataAll: tweets });
 		} catch (err) {
 			console.log(err);

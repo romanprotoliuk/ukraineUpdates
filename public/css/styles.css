@@ -71,11 +71,13 @@ body {
   height: 100vh;
 } */
 
-
+.inside-form-details {
+  padding-bottom: 20px;
+}
 
 .form-buttons {
   display: flex;
-  padding-top: 20px;
+  padding-top: 5px;
 }
 
 .profile-username {
@@ -217,6 +219,19 @@ label {
   padding-bottom: 10px;
 }
 
+
+.inside-form-details {
+  display: flex;
+}
+
+.space {
+  padding-right: 10px;
+}
+
+.added-btn-div {
+  display: flex;
+  flex-direction: column;
+}
 
 /* home */
 .home-wrapper {
