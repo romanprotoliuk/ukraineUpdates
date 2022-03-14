@@ -5,7 +5,7 @@
       <h4 class="war-subject"><%= report.subject %></h4>
       <p class="paragraph"><%= report.description %>  </p>
       <div class="war-links">
-        <a class="link-crime-reports" href="<%= report.url %>" target="_blank"><%= report.url %> </a>
+        <a class="link-crime-reports mobile-a-tag" href="<%= report.url %>" target="_blank"><%= report.url %> </a>
       </div>
       <div class="form-buttons">
         <form action="/note/edit/<%=report.id %> " method="get">

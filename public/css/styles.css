@@ -96,6 +96,7 @@ body {
 .war-subject {
   margin-block-end: 0em;
   padding-bottom: 10px;
+  font-size: 16px;
 }
 
 .edit-btn {
@@ -614,4 +615,57 @@ img {vertical-align: middle;}
 /* On smaller screens, decrease text size */
 @media only screen and (max-width: 300px) {
   .text {font-size: 11px}
+}
+
+@media screen and (max-width: 479px) {
+  .body-wrapper {
+    /* padding-top: 8%; */
+    width: 90vw;
+    margin: 0 auto;
+    position: relative;
+    padding-top: 60px;
+  }
+
+  .nav-link-u {
+    font-size: 14px;
+  }
+  
+  .document-btn {
+    font-weight: 600;
+    font-size: 14px;
+    padding: 15px 25px;
+    text-align: center;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;            
+    box-shadow: 0 0 20px #eee;
+    border-radius: 5px;
+    display: block;
+    border: none;
+    cursor: pointer;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  .war-subject {
+    font-size: 16px;
+  }
+
+  .mobile-a-tag {
+    font-size: 12px;
+  }
+
+  .paragraph {
+    font-size: 12px;
+  }
+
+  .title {
+    font-size: 16px;
+  }
+
+  .greetings {
+    font-size: 16px;
+  }
 }
