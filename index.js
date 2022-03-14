@@ -82,13 +82,13 @@ app.post('/login', async (req, res) => {
 	}
 });
 
-// `ukraine`, `zelenskyyUa`, `walterlekh`
+//
 
 app.get('/tweets', async (req, res) => {
 	console.log('this is user' + res.locals.user.id);
 	if (req.cookies.userId) {
 		const bearerToken = process.env.BEARER_TOKEN;
-		const accounts = [ `nexta_tv` ];
+		const accounts = [ `nexta_tv`, `ukraine`, `zelenskyyUa`, `walterlekh` ];
 		const options = {
 			headers: {
 				Authorization: `Bearer ${bearerToken}`
