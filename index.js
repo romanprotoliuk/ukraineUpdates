@@ -116,36 +116,6 @@ app.get('/tweets', async (req, res) => {
 				});
 			});
 
-			const time = moment().format(tweets[0].created_at);
-			console.log('These are tweets: ', tweets[0].created_at);
-			console.log(time);
-
-			// const tweetIds = tweets.map((id) => {
-			// 	return id.id;
-			// });
-
-			// const pendingUserNames = tweetIds.map((tweetId) => {
-			// 	console.log('pending: ', tweetId);
-			// 	const response = axios.get(
-			// 		`https://api.twitter.com/2/tweets/${tweetId}?expansions=attachments.media_keys,referenced_tweets.id,author_id`,
-			// 		options
-			// 	);
-			// 	return response;
-			// });
-
-			// const responsesForUsernames = await Promise.all(pendingUserNames);
-
-			// console.log(res);
-
-			// console.log(tweetIds);
-
-			// const searchByTweetId = await axios.get(
-			// 	`https://api.twitter.com/2/tweets/1502834719716790274?expansions=attachments.media_keys,referenced_tweets.id,author_id`,
-			// 	options
-			// );
-
-			// console.log(searchByTweetId.data.includes.users[0].username);
-
 			// get all tweet ids from the database
 			const user = await db.user.findAll({
 				where: {
@@ -175,6 +145,10 @@ app.get('/logout', (req, res) => {
 	console.log('logging out');
 	res.clearCookie('userId');
 	res.redirect('/');
+});
+
+app.get('*', (req, res) => {
+	res.render('404.ejs');
 });
 
 app.listen(PORT, () => {

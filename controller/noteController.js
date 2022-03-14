@@ -1,9 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../models');
-const cryptojs = require('crypto-js');
-const bcrypt = require('bcrypt');
-const axios = require('axios');
 require('dotenv').config();
 
 router.post('/', async (req, res) => {
@@ -26,7 +23,6 @@ router.post('/', async (req, res) => {
 	}
 });
 
-// find one note and compare it to the user id
 router.get('/edit/:noteId', async (req, res) => {
 	if (req.cookies.userId) {
 		const note = await db.note.findOne({
@@ -83,7 +79,6 @@ router.delete('/:Id/tweet', async (req, res) => {
 	if (req.cookies.userId && res.locals.user) {
 		try {
 			const tweet = req.params.Id;
-			// console.log(tweet);
 			const user = res.locals.user;
 			await user.removeTweet(tweet);
 		} catch (err) {

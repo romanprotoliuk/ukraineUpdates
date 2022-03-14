@@ -26,7 +26,6 @@ body {
 .nav-link-u {
   font-size: 18px;
   font-weight: 600;
-  /* text-transform: uppercase; */
   color: #666666;
   transition: 0.3s;
   text-decoration: none;
@@ -37,7 +36,6 @@ body {
 }
 
 .body-wrapper {
-  /* padding-top: 8%; */
   width: 90vw;
   margin: 0 auto;
   position: relative;
@@ -55,21 +53,9 @@ body {
   justify-content: space-between;
 }
 
-/* .profile-left-side {
-  display: flex;
-  flex-direction: column;
-} */
-
 .profile-right-side {
   align-self: flex-end;
 }
-
-
-/* form */
-
-/* .body-wrapper {
-  height: 100vh;
-} */
 
 .inside-form-details {
   padding-bottom: 20px;
@@ -129,7 +115,6 @@ h3 {
 .landing {
   position: relative;
   height: 80vh;
-  /* background-color: aquamarine; */
 }
 
 .about {
@@ -175,7 +160,6 @@ h3 {
   border-radius: 5px;
   cursor: pointer;
 }
-
 
 .field {
   display: flex;
@@ -252,25 +236,8 @@ label {
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.05);
 }
 
-/* .add-btn {
-  font-weight: 600;
-  background-color: black;
-  padding: 15px 45px;
-  
-  cursor: pointer;
-  color: white;
-  background-color: #0D0D0D;
-  border-radius: 5px;
-  border-width: 2px;
-  border-style: solid;
-  border-color: blue; 
-  border: none;
-} */
-
-
-
 .add-btn-x {background-image: linear-gradient(to right, #0D0D0D 0%, #414345  51%, #0D0D0D  100%)}
-/* .add {background-image: linear-gradient(to right, #004FF9 0%, #FFF94C  51%, #004FF9  100%)} */
+
 .add-btn-x {
   width: 100px;
   margin-right: 10px;
@@ -295,9 +262,8 @@ label {
    text-decoration: none;
  }
 
-
 .add {background-image: linear-gradient(to right, #0D0D0D 0%, #414345  51%, #0D0D0D  100%)}
-/* .add {background-image: linear-gradient(to right, #004FF9 0%, #FFF94C  51%, #004FF9  100%)} */
+
 .add {
   font-weight: 600;
   font-size: 10px;
@@ -343,22 +309,8 @@ label {
   text-decoration: none;
 }
  
-
-
-/* .added {
-  font-weight: 600;
-  background-color: rgb(41, 117, 41);
-  padding: 10px 10px;
-  
-  cursor: pointer;
-  color: white;
-  border-radius: 5px;
-  border: none;
-  cursor: none;
-} */
-
-
 .added {background-image: linear-gradient(to right, #28292b5e 0%, #8d8c7960  51%, #24242562  100%)}
+
 .added {
   font-weight: 600;
   font-size: 10px;
@@ -372,10 +324,7 @@ label {
   border-radius: 5px;
   display: block;
   border: none;
- }
-
-
-
+}
 
 .document-btn-a {
   color: white;
@@ -406,14 +355,6 @@ label {
   color: black;
   text-decoration: underline;
 }
-
-/* .add-btn:not(:last-child) {
-  padding-bottom: 10px;
-} */
-
-/* .add-btn {
-  margin-right: 10px;
-} */
 
 /* profile tweet */
 .tweet-wrapper {
@@ -528,6 +469,23 @@ img {vertical-align: middle;}
   bottom: 8px;
   width: 100%;
   text-align: center;
+}
+
+/* 404 */
+.main-404-wrapper {
+  position: relative;
+}
+
+.m-404-wrapper {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+.four-o-four {
+  font-size: 100px;
 }
 
 /* Number text (1/3 etc) */

@@ -1,9 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../models');
-const cryptojs = require('crypto-js');
-const bcrypt = require('bcrypt');
-const axios = require('axios');
 require('dotenv').config();
 
 router.get('/journal', async (req, res) => {
@@ -28,7 +25,6 @@ router.get('/tweets', async (req, res) => {
 		try {
 			const allTweets = await res.locals.user.getTweets();
 			res.render('profileTweets.ejs', { tweets: allTweets });
-			// console.log(allTweets[1]);
 		} catch (err) {
 			console.log(err);
 		}
@@ -38,9 +34,3 @@ router.get('/tweets', async (req, res) => {
 });
 
 module.exports = router;
-
-// const allData = await db.tweet.findAll({
-// 	where: {
-// 		userId: res.locals.user.id
-// 	}
-// });

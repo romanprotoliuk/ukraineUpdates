@@ -1,9 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../models');
-const cryptojs = require('crypto-js');
-const bcrypt = require('bcrypt');
-const axios = require('axios');
 require('dotenv').config();
 
 router.post('/', async (req, res) => {
@@ -19,7 +16,6 @@ router.post('/', async (req, res) => {
 			const user = res.locals.user;
 			await user.addTweet(tweet);
 			const foundTweets = await user.getTweets();
-			// console.log(foundTweets);
 			res.redirect('/tweets');
 		} catch (err) {
 			console.log(err);
