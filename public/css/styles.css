@@ -392,6 +392,10 @@ label {
 }
 
 /* slides */
+.landing-img {
+  padding-top: 7%;
+}
+
 .mySlides {display: none;}
 img {vertical-align: middle;}
 
