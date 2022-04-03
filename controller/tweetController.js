@@ -15,7 +15,6 @@ router.post('/', async (req, res) => {
 			});
 			const user = res.locals.user;
 			await user.addTweet(tweet);
-			const foundTweets = await user.getTweets();
 			res.redirect('/tweets');
 		} catch (err) {
 			console.log(err);

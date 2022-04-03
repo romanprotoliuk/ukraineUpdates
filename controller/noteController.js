@@ -36,8 +36,6 @@ router.get('/edit/:noteId', async (req, res) => {
 	}
 });
 
-// find the note first
-// and then edit it
 router.put('/edit/:noteId', async (req, res) => {
 	if (req.cookies.userId && res.locals.user) {
 		await db.note.update(

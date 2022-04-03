@@ -1,4 +1,3 @@
-require('dotenv').config();
 const express = require('express');
 const ejsLayout = require('express-ejs-layouts');
 const app = express();
@@ -9,7 +8,6 @@ const bcrypt = require('bcrypt');
 const moment = require('moment');
 const axios = require('axios');
 const methodOverride = require('method-override');
-
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(methodOverride('_method'));
@@ -19,32 +17,14 @@ app.use(cookieParser());
 
 const PORT = process.env.PORT || 8000;
 
-// AUTHENTICATION MIDDLEWARE
-app.use(async (req, res, next) => {
-	if (req.cookies.userId) {
-		const decryptedId = cryptojs.AES.decrypt(req.cookies.userId, process.env.SECRET);
-		const decryptedIdString = decryptedId.toString(cryptojs.enc.Utf8);
-		const user = await db.user.findByPk(decryptedIdString);
-		res.locals.user = user;
-	} else res.locals.user = null;
-	next();
-});
+require('./config/config');
 
+app.use(require('./middleware/romanAuth').auth);
+
+app.use('/', require('./routes/pages'));
+app.use('/profile', require('./routes/profile'));
 app.use('/tweet', require('./controller/tweetController'));
 app.use('/note', require('./controller/noteController'));
-app.use('/profile', require('./controller/profileController'));
-
-app.get('/', (req, res) => {
-	res.render('home.ejs');
-});
-
-app.get('/signup', (req, res) => {
-	res.render('new.ejs');
-});
-
-app.get('/login', (req, res) => {
-	res.render('login.ejs');
-});
 
 app.post('/signup', async (req, res) => {
 	const [ newUser, created ] = await db.user.findOrCreate({ where: { email: req.body.email } });
@@ -82,8 +62,6 @@ app.post('/login', async (req, res) => {
 	}
 });
 
-//
-
 app.get('/tweets', async (req, res) => {
 	console.log('this is user' + res.locals.user.id);
 	if (req.cookies.userId) {
@@ -95,8 +73,6 @@ app.get('/tweets', async (req, res) => {
 			}
 		};
 
-		// "https://api.twitter.com/2/tweets/search/recent?query=from:${account}&tweet.fields=created_at&expansions=author_id&user.fields=created_at"
-
 		try {
 			const params = {};
 			const pedingPromises = accounts.map((account) =>
@@ -105,18 +81,14 @@ app.get('/tweets', async (req, res) => {
 					options
 				)
 			);
-			// console.log(res.locals.user);
-			// console.log(req.cookies.userId);
 			const responses = await Promise.all(pedingPromises);
 			const tweets = [];
 			responses.forEach((response) => {
 				response.data.data.forEach((tweet) => {
 					tweets.push(tweet);
-					// console.log(tweet.id);
 				});
 			});
 
-			// get all tweet ids from the database
 			const user = await db.user.findAll({
 				where: {
 					id: res.locals.user.id
@@ -141,16 +113,10 @@ app.get('/tweets', async (req, res) => {
 	}
 });
 
-app.get('/logout', (req, res) => {
-	console.log('logging out');
-	res.clearCookie('userId');
-	res.redirect('/');
-});
-
 app.get('*', (req, res) => {
 	res.render('404.ejs');
 });
 
 app.listen(PORT, () => {
-	console.log('It is live on port 8000');
+	console.log('It is live on port 8000 ✌️');
 });
